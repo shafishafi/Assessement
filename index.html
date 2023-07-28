@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <h1>Add Student</h1>
+<form action="add_student.php" method="post">
+<table>
+<tr>
+<td>First name:</td>
+<td><input type="text" name="first_name" required></td>
+</tr>
+<tr>
+<td>Last name:</td>
+<td><input type="text" name="last_name" required></td>
+</tr>
+<tr>
+<td>Date of birth:</td>
+<td><input type="date" name="dob" required></td>
+</tr>
+<tr>
+<td>Parent's name:</td>
+<td><input type="text" name="parent_name" required></td>
+</tr>
+<tr>
+<td>Address:</td>
+<td><input type="text" name="address" required></td>
+</tr>
+<tr>
+<td>City:</td>
+<td><input type="text" name="city" required></td>
+</tr>
+<tr>
+<td>Phone number:</td>
+<td><input type="text" name="phone_number" required></td>
+</tr>
+</table>
+<input type="submit" value="Add Student">
+</form>
+
+<br>
+
+<h1>List of Students</h1>
+<table>
+<tr>
+<th>First name</th>
+<th>Last name</th>
+<th>Date of birth</th>
+<th>Parent's name</th>
+<th>Address</th>
+<th>City</th>
+<th>Phone number</th>
+</tr>
+
+<?php
+// Get the list of students from the database
+$students = mysqli_query($conn, "SELECT * FROM students");
+
+// Iterate through the list of students and display their details in a table
+while ($student = mysqli_fetch_assoc($students)) {
+?>
+<tr>
+<td><?php echo $student['first_name']; ?></td>
+<td><?php echo $student['last_name']; ?></td>
+<td><?php echo $student['dob']; ?></td>
+<td><?php echo $student['parent_name']; ?></td>
+<td><?php echo $student['address']; ?></td>
+<td><?php echo $student['city']; ?></td>
+<td><?php echo $student['phone_number']; ?></td>
+</tr>
+<?php
+}
+?>
+</table>
+  
+  <script src="script.js"></script>
+
+  <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  -->
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+</body>
+
+</html>
